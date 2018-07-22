@@ -57,4 +57,14 @@ public class ATM {
 
     }
 
+    private void performTransactions() {
+        Transcation currentTransaction = null;
+        boolean userExited = false;
+
+        while(!userExited) {
+            int mainMenuSelection = displayMainMenu();
+
+        }
+    }
+
 }
