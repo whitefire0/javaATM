@@ -7,7 +7,7 @@ public class ATM {
     private Screen screen;
     private Keypad keypad;
     private CashDispenser cashDispenser;
-    private DespositSlot despositSlot;
+    private DespositSlot depositSlot;
     private BankDatabase bankDatabase;
 
     // constants of main menu
@@ -58,7 +58,7 @@ public class ATM {
     }
 
     private void performTransactions() {
-        Transcation currentTransaction = null;
+        Transaction currentTransaction = null;
         boolean userExited = false;
 
         while(!userExited) {
@@ -93,6 +93,23 @@ public class ATM {
         return keypad.getInput();
     }
 
-    
+    private Transaction createTransaction(int type) {
+        Transaction temp = null;
+
+        switch (type) {
+            case BALANCE_ENQUIRY:
+                temp = new BalanceEnquiry(currentAccountNumber, screen, bankDatabase);
+                break;
+            case WITHDRAWAL:
+                temp = new Withdrawal(currentAccountNumber, screen, bankDatabase, keypad, cashDispenser);
+                break;
+            case DEPOSIT:
+                temp = new Deposit(currentAccountNumber, screen, bankDatabase, keypad, depositSlot);
+                break;
+
+        }
+
+        return temp;
+    }
 
 }
