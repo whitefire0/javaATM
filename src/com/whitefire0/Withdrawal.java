@@ -1,7 +1,7 @@
 package com.whitefire0;
 
 // class Withdrawal represents an ATM withdrawal transaction
-public class Withdrawal {
+public class Withdrawal extends Transaction {
 
     private int accountNumber;
     private double amount;
@@ -14,5 +14,6 @@ public class Withdrawal {
 
     public Withdrawal() { }
 
+    @Override
     public void exectute() { }
 }
