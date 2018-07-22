@@ -41,5 +41,20 @@ public class ATM {
         }
     }
 
+    private void authenticateUser() {
+        screen.displayMessage("\nPlease enter your account number: ");
+        int accountNumber = keypad.getInput();
+        screen.displayMessage("\nEnter you PIN: ");
+        int pin = keypad.getInput();
+
+        userAuthenticated = bankDatabase.authenticateUser(accountNumber, pin);
+        if (!userAuthenticated) {
+            currentAccountNumber = accountNumber;
+        }
+        else {
+            screen.displayMessageLine("\nInvalid account number of PIN. Please try again.");
+        }
+
+    }
 
 }
