@@ -12,7 +12,7 @@ public class ATM {
 
     // constants of main menu
     private static final int BALANCE_ENQUIRY = 1;
-    private static final int WTIHDRAWAL = 2;
+    private static final int WITHDRAWAL = 2;
     private static final int DEPOSIT = 3;
     private static final int EXIT = 4;
 
@@ -64,7 +64,35 @@ public class ATM {
         while(!userExited) {
             int mainMenuSelection = displayMainMenu();
 
+            switch (mainMenuSelection) {
+                case BALANCE_ENQUIRY:
+                case WITHDRAWAL:
+                case DEPOSIT:
+                    currentTransaction = createTransaction(mainMenuSelection);
+                    currentTransaction.execute();
+                    break;
+                case EXIT:
+                    screen.displayMessageLine("\nExiting the system...");
+                    userExited = true;
+                    break:
+                default:
+                    screen.displayMessageLine("\nYou did not enter a valid selection. Please try again.");
+                    break;
+            }
+
         }
     }
+
+    private int displayMainMenu() {
+        screen.displayMessageLine("\nMain Menu:");
+        screen.displayMessageLine("\n1 - View balance");
+        screen.displayMessageLine("\n2 - Withdraw cash");
+        screen.displayMessageLine("\n3 - Deposit funds");
+        screen.displayMessageLine("\n4 - Exit");
+        screen.displayMessage("\nEnter a choice: ");
+        return keypad.getInput();
+    }
+
+    
 
 }
