@@ -26,7 +26,20 @@ public class ATM {
         bankDatabase = new BankDatabase();
     }
 
-    
+    public void run() {
+        // welcome and authenticate
+        while (true) {
+            while (!userAuthenticated) {
+                screen.displayMessageLine("\nWelcome!");
+                authenticateUser();
+            }
+
+            performTransactions();
+            userAuthenticated = false; //reset before next ATM session
+            currentAccountNumber = 0;
+            screen.displayMessageLine("\nThank you, have a nice day!");
+        }
+    }
 
 
 }
